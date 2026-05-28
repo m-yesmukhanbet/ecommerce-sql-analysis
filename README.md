@@ -42,6 +42,7 @@ ecommerce-sql-analysis/
     ├── 03_customer_analysis.sql
     ├── 04_delivery_analysis.sql
     └── 05_product_seller_analysis.sql
+```
 
 ## Business Questions
 
