@@ -1,92 +1,183 @@
-E-commerce SQL Analysis
+# E-commerce SQL Analysis
 
-Project Overview
+## Project Overview
 
-This project analyzes the Brazilian E-Commerce Public Dataset by Olist using SQL. The goal is to explore order data, revenue performance, customer behavior, delivery efficiency, product categories, and seller performance.
+This project analyzes the **Brazilian E-Commerce Public Dataset by Olist** using **SQL** and **PostgreSQL**.
 
-The project focuses on practical business questions that a junior data analyst may investigate in an e-commerce company, such as revenue trends, average order value, repeat customers, late deliveries, top product categories, and top-performing sellers.
+The goal of the project is to explore key business areas of an e-commerce marketplace, including revenue performance, customer behavior, delivery efficiency, product categories, and seller performance.
 
-Tools Used
+The analysis is designed to answer practical business questions that a junior data analyst could investigate in a real e-commerce company.
 
-SQL
-PostgreSQL
-DBeaver
+## Tools Used
 
-Dataset
+- SQL
+- PostgreSQL
+- DBeaver
+- GitHub
 
-Brazilian E-Commerce Public Dataset by Olist
+## Dataset
 
-The dataset includes information about orders, customers, products, sellers, payments, delivery dates, and product categories.
+**Dataset:** Brazilian E-Commerce Public Dataset by Olist
 
-Main tables used:
+The dataset contains information about customer orders, order items, products, sellers, payments, delivery dates, customer locations, and product categories.
 
-olist_orders_dataset
-olist_order_items_dataset
-olist_customers_dataset
-olist_products_dataset
-olist_sellers_dataset
-olist_order_payments_dataset
-product_category_name_translation
+Main tables used in this project:
 
-Project Structure
+- `olist_orders_dataset`
+- `olist_order_items_dataset`
+- `olist_customers_dataset`
+- `olist_products_dataset`
+- `olist_sellers_dataset`
+- `olist_order_payments_dataset`
+- `product_category_name_translation`
 
-sql/01_data_quality_check.sql
-sql/02_revenue_analysis.sql
-sql/03_customer_analysis.sql
-sql/04_delivery_analysis.sql
-sql/05_product_seller_analysis.sql
+## Project Structure
 
-Analysis Sections
+```text
+ecommerce-sql-analysis/
+├── README.md
+└── sql/
+    ├── 01_data_quality_check.sql
+    ├── 02_revenue_analysis.sql
+    ├── 03_customer_analysis.sql
+    ├── 04_delivery_analysis.sql
+    └── 05_product_seller_analysis.sql
 
-1. Data Quality Check
+## Business Questions
 
-Checked row counts, date ranges, order status distribution, duplicate IDs, missing values, invalid prices, and basic price statistics.
+This project answers the following business questions:
 
-2. Revenue Analysis
+- What is the total revenue of the marketplace?
+- What is the average order value?
+- Which months generated the highest revenue?
+- How did revenue change month over month?
+- Which product categories generated the most revenue?
+- Which Brazilian states have the highest customer and revenue concentration?
+- What percentage of customers placed more than one order?
+- Which customers generated the highest revenue?
+- What percentage of delivered orders arrived late?
+- Which states had the highest late delivery rate?
+- Which sellers generated the most revenue?
+- Which product categories had the highest delivery delay rate?
 
-Calculated total revenue, product revenue, freight revenue, average order value, monthly revenue trends, top revenue months, month-over-month revenue growth, and revenue by product category.
+## Analysis Sections
 
-3. Customer Analysis
+### 1. Data Quality Check
 
-Analyzed customer geography, top customer states and cities, revenue by state, customer order frequency, repeat customers, top customers by revenue, and customer value segments.
+**File:** `sql/01_data_quality_check.sql`
 
-4. Delivery Analysis
+This section checks whether the imported data is reliable enough for analysis.
 
-Measured delivered and non-delivered orders, average delivery time, late delivery rate, delivery performance by state, monthly late delivery trends, and the relationship between delivery performance and revenue.
+Main checks included:
 
-5. Product and Seller Analysis
+- Row counts for all imported tables
+- Order date range
+- Order status distribution
+- Duplicate order IDs
+- Duplicate customer IDs
+- Missing values in key columns
+- Invalid prices
+- Invalid freight values
+- Basic price and freight statistics
 
-Identified top product categories by revenue and sales volume, average item price by category, top sellers by revenue and order volume, seller performance by state, monthly seller ranking, late delivery by product category, and freight cost patterns.
+### 2. Revenue Analysis
 
-Key Business Questions
+**File:** `sql/02_revenue_analysis.sql`
 
-Which months generated the highest revenue?
-What is the average order value?
-Which product categories generate the most revenue?
-Which Brazilian states have the highest customer and revenue concentration?
-What percentage of customers placed more than one order?
-What percentage of delivered orders arrived late?
-Which sellers generated the most revenue?
-Which product categories have the highest delivery delay rate?
+This section analyzes marketplace revenue and sales performance.
 
-Main Skills Demonstrated
+Main metrics included:
 
-SQL joins
-Aggregations
-GROUP BY and HAVING
-Common Table Expressions
-Window functions
-Data quality checks
-Business KPI analysis
-Customer segmentation
-Revenue analysis
-Delivery performance analysis
-Seller and product analysis
+- Total revenue
+- Product revenue
+- Freight revenue
+- Average order value
+- Monthly revenue trend
+- Top revenue months
+- Month-over-month revenue growth
+- Revenue by product category
 
-Notes
+Revenue was calculated as: `price + freight_value`
 
-Revenue was calculated as:
+### 3. Customer Analysis
 
-price + freight_value
+**File:** `sql/03_customer_analysis.sql`
 
-The orders table contains missing delivered customer dates for some orders. These records are mainly related to orders that were not delivered, cancelled, unavailable, or still in non-delivered statuses.
+This section analyzes customer distribution, customer value, and order frequency.
+
+Main metrics included:
+
+- Total unique customers
+- Customers by state
+- Top customer cities
+- Orders by customer state
+- Revenue by customer state
+- Customer order frequency
+- Repeat customer percentage
+- Top customers by revenue
+- Customer revenue segmentation
+
+### 4. Delivery Analysis
+
+**File:** `sql/04_delivery_analysis.sql`
+
+This section analyzes delivery efficiency and late delivery risk.
+
+Main metrics included:
+
+- Delivered vs non-delivered orders
+- Order status distribution
+- Average delivery time
+- Late delivery rate
+- Delivery performance by customer state
+- Monthly late delivery trend
+- Average delay days for late orders
+- On-time or early delivery percentage
+- Delivery performance combined with revenue by state
+
+### 5. Product and Seller Analysis
+
+**File:** `sql/05_product_seller_analysis.sql`
+
+This section analyzes product category performance and seller performance.
+
+Main metrics included:
+
+- Top product categories by revenue
+- Top product categories by number of items sold
+- Average item price by category
+- Top sellers by revenue
+- Top sellers by order volume
+- Seller performance by state
+- Monthly seller ranking using window functions
+- Late delivery rate by product category
+- Freight value by product category
+
+## SQL Skills Demonstrated
+
+- Data quality checks
+- Filtering and sorting
+- Aggregations
+- `GROUP BY`
+- `HAVING`
+- Joins across multiple tables
+- Common Table Expressions
+- Window functions
+- `RANK()`
+- `LAG()`
+- Conditional aggregation with `FILTER`
+- Customer segmentation
+- Business KPI calculation
+- Revenue analysis
+- Delivery performance analysis
+- Seller performance analysis
+
+## Key Notes
+
+The orders table contains missing delivered customer dates for some records. These rows are mainly related to orders that were not delivered, cancelled, unavailable, or still in non-delivered statuses.
+
+For revenue analysis, the project uses only orders available in the order items table because revenue is calculated from item price and freight value.
+
+## Portfolio Summary
+
+This project demonstrates my ability to use SQL for business analysis, data quality checking, KPI calculation, customer analysis, revenue analysis, delivery performance analysis, and seller performance analysis in an e-commerce context.
